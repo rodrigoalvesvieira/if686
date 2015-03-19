@@ -31,6 +31,6 @@ Se você tiver algo que queira falar comigo a respeito desse projeto. Favor mand
 
 MIT License.
 
-[Paradigmas de Linguages Computacionais]: https://sites.google.com/a/cin.ufpe.br/if686
+[Paradigmas de Linguagens Computacionais]: https://sites.google.com/a/cin.ufpe.br/if686
 [CIn/UFPE]: http://www2.cin.ufpe.br/site/index.php
 [Prof. Fernando Castor]: http://www.cin.ufpe.br/~fjclf
