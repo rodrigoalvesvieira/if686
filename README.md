@@ -11,9 +11,25 @@ Repositório de programas e trabalhos da disciplina [Paradigmas de Linguagens Co
 | 1               | March 17, 2015   |
 | 2               | March 19, 2015   |
 
+###### Assigments
+
+
+| Lecture         | Assigment file      | Release date     | Delivery date    | Final work     |
+| ----------------|:-------------------:|:----------------:|:----------------:|---------------:|
+| 1               | assignment01.pdf    | March 17, 2015   | March 19, 2015   | 20150319.pdf   |
+| 2               | assignment02.pdf    | March 19, 2015   | March 24, 2015   |                |
+
 ## Uso
 
-pending...
+Rode o comando diretamente no terminal, como:
+
+`$ ghci 20150319.hs`
+
+Ou carregue o arqivo de dentro do `ghci`:
+
+```haskell
+:l 20150319
+```
 
 ## Contato
 
