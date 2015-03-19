@@ -12,24 +12,32 @@ double list = map doubleElement list
 
 member :: [Int] -> Int -> Bool
 member list e
-  | (==) (length list) 0 = False
+  | (==) list [] = False
   | otherwise = (==) (head list) e || member (tail list) e
 
 -- this is cool, but if you can use a built-in function, you can do:
 -- member :: [Int] -> Int -> Bool
 -- member list e = e `elem` list
 
--- filtragem: only the integers of a string
-isDigit :: Char -> Bool
-isDigit ch = ch >= '0' && ch <= '9'
-
-digits :: String -> [Bool]
+-- filtering: only the integers of a string
+isDigit :: Char -> [Char]
+isDigit ch
+  | ch >= '0' && ch <= '9' = ch : []
+  | otherwise = []
+-- 
+digits :: String -> String
 digits str
-  | (==) (length str) 0 = []
-  | (==) (length str) 1 = isDigit (head str) : []
-  | otherwise = isDigit (head str) : (digits (tail str))
+  | (==) str [] = []
+  | otherwise = isDigit (head str) ++ digits (tail str)
 
--- sum the elements of two lists
+-- sum the elements of two lists, one-by-one
+select :: [Int] -> [Int]
+select list
+  | (==) list [] = [0]
+  | otherwise = list
 
--- sumPairs :: [Int] -> [Int] -> [Int]
--- sumPairs lista list b =
+sumPairs :: [Int] -> [Int] -> [Int]
+sumPairs listx listy
+  | (==) listx [] && (==) listy [] = []
+  | otherwise = (head (select listx)) + (head (select listy)) : sumPairs (tail (select listx)) (tail (select listy))
+  

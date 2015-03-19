@@ -10,6 +10,9 @@ Repositório de programas e trabalhos da disciplina [Paradigmas de Linguagens Co
 | ----------------|:----------------:|
 | 1               | March 17, 2015   |
 | 2               | March 19, 2015   |
+| 3               | March 24, 2015   |
+| 4               | March 26, 2015   |
+| 5               | March 31, 2015   |
 
 ###### Assigments
 
@@ -33,7 +36,7 @@ Ou carregue o arqivo de dentro do `ghci`:
 
 ## Contato
 
-Se você tiver algo que queira falar comigo a respeito desse projeto. Favor mandar um email para **rav2** [at] cin [dot] ufpe [dot] br
+Se você tiver algo que queira falar comigo a respeito desse projeto, envie um email para **rav2** [at] cin [dot] ufpe [dot] br
 
 ## Referências
 
