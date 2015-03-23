@@ -6,39 +6,41 @@ Repositório de programas e trabalhos da disciplina [Paradigmas de Linguagens Co
 
 ###### Lectures
 
-| Lecture         | Date             |
-| ----------------|:----------------:|
-| 1               | March 17, 2015   |
-| 2               | March 19, 2015   |
-| 3               | March 24, 2015   |
-| 4               | March 26, 2015   |
-| 5               | March 31, 2015   |
+| Lecture         | Date             | Lecture         | Date             |
+| ----------------|:----------------:|:---------------:|:----------------:|
+| 1               | March 17, 2015   | 2               | March 19, 2015   |
+| 3               | March 24, 2015   | 4               | March 26, 2015   |
+| 5               | March 31, 2015   | 6               | April 2, 2015    |
+| 7               | April 7, 2015    | 8               | April 9, 2015    |
+| 9               | April 14, 2015   | 10              | April 16, 2015   |
 
-###### Assigments
+###### Assignments
 
 
 | Lecture         | Assigment file      | Release date     | Delivery date    | Final work     |
 | ----------------|:-------------------:|:----------------:|:----------------:|---------------:|
 | 1               | assignment01.pdf    | March 17, 2015   | March 19, 2015   | 20150319.pdf   |
-| 2               | assignment02.pdf    | March 19, 2015   | March 24, 2015   |                |
+| 2               | assignment02.pdf    | March 19, 2015   | March 24, 2015   | 20150324.hs    |
 
-## Uso
+## Usage
 
-Rode o comando diretamente no terminal, como:
+Either run the file directly from the command line, like:
 
-`$ ghci 20150319.hs`
+`$ ghci 20150324.hs`
 
-Ou carregue o arqivo de dentro do `ghci`:
+Or enter `ghci` and do:
 
 ```haskell
-:l 20150319
+:l 20150324
+-- hack away
+mergesort [50, 70, 4, 2, 5, 1, 3]
 ```
 
-## Contato
+## Contact
 
-Se você tiver algo que queira falar comigo a respeito desse projeto, envie um email para **rav2** [at] cin [dot] ufpe [dot] br
+Email **rav2** [at] cin [dot] ufpe [dot] br
 
-## Referências
+## References
 
 * Learn You a Haskell for Great Good! http://learnyouahaskell.com/chapters
 * Real World Haskell http://book.realworldhaskell.org/read
