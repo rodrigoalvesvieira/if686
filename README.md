@@ -1,8 +1,10 @@
 # if686
 
-Repositório de programas e trabalhos da disciplina [Paradigmas de Linguagens Computacionais] do [CIn/UFPE], dada pelo [Prof. Fernando Castor], no período letivo 2015.1.
+Documents, assignments and code from the [Computational Languages Paradigms] course at [CIn/UFPE], given by [Prof. Fernando Castor], in the semester of 2015.1.
 
 ## Tracking the Learning
+
+The code in this repo is commented as much as possible (and reasonable) to facilitate understanding. Also, the [commits] themselves are commented, often highlighting new things that I have learned.
 
 ###### Lectures
 
@@ -52,6 +54,7 @@ Email **rav2** [at] cin [dot] ufpe [dot] br
 
 MIT License.
 
-[Paradigmas de Linguagens Computacionais]: https://sites.google.com/a/cin.ufpe.br/if686
+[Computational Languages Paradigms]: https://sites.google.com/a/cin.ufpe.br/if686
 [CIn/UFPE]: http://www2.cin.ufpe.br/site/index.php
 [Prof. Fernando Castor]: http://www.cin.ufpe.br/~fjclf
+[commits]: https://github.com/rodrigoalvesvieira/if686/commits/master
