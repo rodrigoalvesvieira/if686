@@ -1,3 +1,17 @@
+{-
+
+Quicksort
+
+-}
+
+quicksort :: [Int] -> [Int]
+quicksort [] = []
+quicksort (x:xs) =
+    let smallerSorted = quicksort [a | a <- xs, a <= x]
+        biggerSorted = quicksort [a | a <- xs, a > x]
+    in  smallerSorted ++ [x] ++ biggerSorted
+
+
 -- Mergesort
 
 -- recebe duas listas ordenadas e retorna uma lista nova
