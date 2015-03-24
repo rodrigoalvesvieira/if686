@@ -73,3 +73,71 @@ ordenaTripla (a, b, c) = (x, y, z)
     x = list!!0
     y = list!!1
     z = list!!2
+
+
+type Ponto = (Float, Float)
+type Reta = (Ponto, Ponto)
+
+{-
+
+Defina funções que retornem:
+
+1. A primeira coordenada de um ponto
+2. A segunda coordenada de um ponto
+3. Indique se uma reta é vertical ou não
+
+-}
+
+first_ :: Ponto -> Float
+first_ p = fst p
+
+second_ :: Ponto -> Float
+second_ p = snd p
+
+vertical :: Reta -> Bool
+vertical r = first_ (fst r) == second_ (fst r)
+
+-- let r = ((9, 0), (22, 34))
+
+{-
+
+Se uma reta é dada por (y - y1) / (x - x1) = (y2 - y1) / (x2 - x1),
+defina uma função que, dada uma cordenada x e uma reta, retorne a coordenada
+y tal que o ponto (x, y) faça parte da reta
+
+-}
+
+pontoY :: Float -> Reta -> Float
+pontoY x rect = y
+  where
+    y = snd (snd rect)
+
+type Pessoa = String
+type Livro = String
+
+type BancoDados = [(Pessoa, Livro)]
+
+baseExemplo :: BancoDados
+baseExemplo = [
+  ("Rodrigo", "Breakfast for Champions"),
+  ("Bruno", "Atlas Shrugged"),
+  ("Talita", "Dom Casmurro"),
+  ("Rodrigo", "Animal Farm")
+  ]
+
+livros :: BancoDados -> Pessoa -> [Livro]
+livros bd person = [book | (p, book) <- bd, person == p]
+
+-- livros baseExemplo "Rodrigo" - fuck man, this is great
+
+emprestimos :: BancoDados -> Livro -> [Pessoa]
+emprestimos bd b = [p | (p, book) <- bd, book == b]
+
+-- emprestimos baseExemplo  "Animal Farm"
+
+emprestado :: BancoDados -> Livro -> Bool
+emprestado bd b = True
+
+qtdEmprestimos :: BancoDados -> Pessoa -> Int
+qtdEmprestimos [] _ = 0
+qtdEmprestimos bd p = 10
