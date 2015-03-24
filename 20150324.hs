@@ -125,6 +125,9 @@ baseExemplo = [
   ("Rodrigo", "Animal Farm")
   ]
 
+baseExemplo1 :: BancoDados
+baseExemplo1 = [("Rodrigo", "Hackers & Painters")]
+
 livros :: BancoDados -> Pessoa -> [Livro]
 livros bd person = [book | (p, book) <- bd, person == p]
 
@@ -136,7 +139,11 @@ emprestimos bd b = [p | (p, book) <- bd, book == b]
 -- emprestimos baseExemplo  "Animal Farm"
 
 emprestado :: BancoDados -> Livro -> Bool
-emprestado bd b = True
+emprestado bd l
+  | length bd == 1 = (snd (head bd) == l)
+  | otherwise =  (snd (head bd) == l) || emprestado (tail bd) l
+
+-- emprestado baseExemplo  "Animal Farm"
 
 qtdEmprestimos :: BancoDados -> Pessoa -> Int
 qtdEmprestimos [] _ = 0
