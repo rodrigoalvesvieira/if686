@@ -210,7 +210,6 @@ splitWords str
 
 -- yeah, exactly what you thought
 trim :: String -> String
-trim [] = []
 trim str = dropSpace (reverse (dropSpace (reverse str)))
 
 type Line = [Word]
