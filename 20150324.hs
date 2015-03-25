@@ -164,6 +164,7 @@ membro xs n = (==) (length [number | number <- xs, number == n]) 1
 
 {- Funções de Processamento de Texto -}
 
+-- returns the first word from a string
 getWord :: String -> String
 getWord [] = ""
 getWord str
@@ -174,12 +175,14 @@ getWord str
 isSpace :: Char -> Bool
 isSpace c = c == ' '
 
+-- removes the first word from a string
 dropWord :: String -> String
 dropWord [] = ""
 dropWord str
   | not (isSpace (head str)) = dropWord (tail str)
   | otherwise = str
 
+-- remove all leading space chars from a string
 dropSpace :: String -> String
 dropSpace [] = ""
 dropSpace str
@@ -189,17 +192,26 @@ dropSpace str
 type Word = String
 
 -- helper function
+-- like getWord, but works with string leaded by space chars
 forceGetWord :: String -> String
 forceGetWord [] = []
 forceGetWord str
   | isSpace (head str) = forceGetWord (tail str)
   | otherwise = getWord str
 
+-- space-only-separator split function
 splitWords :: String -> [Word]
 splitWords [] = []
 splitWords str
   | str == getWord str = [(forceGetWord str)]
-  | otherwise = [(forceGetWord str)] ++ (splitWords (dropSpace (dropWord str)))
+  | otherwise = [(forceGetWord (dropSpace str_))] ++ (splitWords (dropSpace (dropWord str_)))
+  where
+    str_ = dropSpace str
+
+-- yeah, exactly what you thought
+trim :: String -> String
+trim [] = []
+trim str = dropSpace (reverse (dropSpace (reverse str)))
 
 type Line = [Word]
 
