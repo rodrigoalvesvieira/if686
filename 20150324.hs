@@ -40,23 +40,23 @@ Funções da aula
 -- 1. Defina a função *menorMaior* que reebe três inteiros e retorna uma tupla com o menor e o maior deles.
 menorDeDois :: Int -> Int -> Int
 menorDeDois a b
-	| a < b  = a
-	| otherwise  = b
+  | a < b  = a
+  | otherwise  = b
 
 maiorDeDois :: Int -> Int -> Int
 maiorDeDois a b
-	| a > b  = a
-	| otherwise  = b
+  | a > b  = a
+  | otherwise  = b
 
 menorDeTres :: Int -> Int -> Int -> Int
 menorDeTres a b c
      | a < (menorDeDois b c) = a
-	 | otherwise = (menorDeDois b c)
+   | otherwise = (menorDeDois b c)
 
 maiorDeTres :: Int -> Int -> Int -> Int
 maiorDeTres a b c
       | a > (maiorDeDois b c) = a
- 	 | otherwise = (maiorDeDois b c)
+   | otherwise = (maiorDeDois b c)
 
 menorMaior :: Int -> Int -> Int -> (Int, Int)
 menorMaior a b c = (menor, maior)
@@ -125,9 +125,6 @@ baseExemplo = [
   ("Rodrigo", "Animal Farm")
   ]
 
-baseExemplo1 :: BancoDados
-baseExemplo1 = [("Rodrigo", "Hackers & Painters")]
-
 livros :: BancoDados -> Pessoa -> [Livro]
 livros bd person = [book | (p, book) <- bd, person == p]
 
@@ -139,12 +136,49 @@ emprestimos bd b = [p | (p, book) <- bd, book == b]
 -- emprestimos baseExemplo  "Animal Farm"
 
 emprestado :: BancoDados -> Livro -> Bool
-emprestado bd l
-  | length bd == 1 = (snd (head bd) == l)
-  | otherwise =  (snd (head bd) == l) || emprestado (tail bd) l
+emprestado [] _ = False
+emprestado bd l = (snd (head bd) == l) || emprestado (tail bd) l
 
 -- emprestado baseExemplo  "Animal Farm"
 
 qtdEmprestimos :: BancoDados -> Pessoa -> Int
 qtdEmprestimos [] _ = 0
-qtdEmprestimos bd p = 10
+qtdEmprestimos bd p = length (livros bd p)
+
+emprestar :: BancoDados -> Pessoa -> Livro -> BancoDados
+emprestar [] p b = []
+emprestar bd p b = (++) [(p, b)] bd
+
+-- qtdEmprestimos (emprestar baseExemplo "Rodrigo" "The Fountainhead") "Rodrigo"
+
+devolver :: BancoDados -> Pessoa -> Livro -> BancoDados
+devolver [] p b = []
+devolver bd p b
+  | (head bd) == (p, b) = tail bd
+  | otherwise = (++) [(head bd)] (devolver (tail bd) p b)
+
+{- Redefina as seguintes funções utilizando compreensão de listas -}
+
+membro :: [Int] -> Int -> Bool
+membro xs n = (==) (length [number | number <- xs, number == n]) 1
+
+{- Funções de Processamento de Texto -}
+
+getWord :: String -> String
+getWord str = str -- TODO
+
+dropWord :: String -> String
+dropWord str = str -- TODO
+
+dropSpace :: String -> String
+dropSpace str = str -- TODO
+
+type Word = String
+
+splitWords :: String -> [Word]
+splitWords str = [str]
+
+type Line = [Word]
+
+getLine :: Int -> [Word] -> Line
+getLine n ws = [] -- TODO
