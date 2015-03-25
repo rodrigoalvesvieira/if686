@@ -165,18 +165,41 @@ membro xs n = (==) (length [number | number <- xs, number == n]) 1
 {- Funções de Processamento de Texto -}
 
 getWord :: String -> String
-getWord str = str -- TODO
+getWord [] = ""
+getWord str
+  | not (isSpace (head str)) = [(head str)] ++ (getWord (tail str))
+  | otherwise = ""
+
+-- helper function
+isSpace :: Char -> Bool
+isSpace c = c == ' '
 
 dropWord :: String -> String
-dropWord str = str -- TODO
+dropWord [] = ""
+dropWord str
+  | not (isSpace (head str)) = dropWord (tail str)
+  | otherwise = str
 
 dropSpace :: String -> String
-dropSpace str = str -- TODO
+dropSpace [] = ""
+dropSpace str
+  | isSpace (head str) = dropSpace (tail str)
+  | otherwise = str
 
 type Word = String
 
+-- helper function
+forceGetWord :: String -> String
+forceGetWord [] = []
+forceGetWord str
+  | isSpace (head str) = forceGetWord (tail str)
+  | otherwise = getWord str
+
 splitWords :: String -> [Word]
-splitWords str = [str]
+splitWords [] = []
+splitWords str
+  | str == getWord str = [(forceGetWord str)]
+  | otherwise = [(forceGetWord str)] ++ (splitWords (dropSpace (dropWord str)))
 
 type Line = [Word]
 
