@@ -12,9 +12,11 @@ The code in this repo is commented as much as possible (and reasonable) to facil
 | ----------------|:----------------:|:---------------:|:----------------:|
 | 1               | March 17, 2015   | 2               | March 19, 2015   |
 | 3               | March 24, 2015   | 4               | March 26, 2015   |
-| 5               | March 31, 2015   | 6               | April 2, 2015    |
-| 7               | April 7, 2015    | 8               | April 9, 2015    |
-| 9               | April 14, 2015   | 10              | April 16, 2015   |
+| 5               | March 31, 2015   | 6               | April 7, 2015    |
+| 7               | April 9, 2015    | 8               | April 14, 2015   |
+| 9               | April 16, 2015   | 10              | April 23, 2015   |
+| 11              | April 28, 2015   | 12              | April 30, 2015   |
+| 13              | May 5, 2015      | 14              | May 26, 2015     |
 
 ###### Assignments
 

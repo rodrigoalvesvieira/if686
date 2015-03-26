@@ -74,7 +74,6 @@ ordenaTripla (a, b, c) = (x, y, z)
     y = list!!1
     z = list!!2
 
-
 type Ponto = (Float, Float)
 type Reta = (Ponto, Ponto)
 
@@ -214,5 +213,40 @@ trim str = dropSpace (reverse (dropSpace (reverse str)))
 
 type Line = [Word]
 
-getLine :: Int -> [Word] -> Line
-getLine n ws = [] -- TODO
+-- função nomeada getLinee para evitar conflito com funções da lib padrão. Por favor, considere.
+getLinee :: Int -> [Word] -> Line
+getLinee n ws
+  | n == 0 || ws == [] = []
+  | len <= n = [(head ws)] ++ (getLinee (n - len) (tail ws))
+  | otherwise = []
+  where
+    len = length (head ws)
+
+-- getLinee 10 ["Oi", "meu", "nome", "é", "Rodrigo"]
+
+dropLine :: Int -> [Word] -> Line
+dropLine n ws
+  | n == 0 = ws
+  | len <= n = (dropLine (n - len) (tail ws))
+  | otherwise = ws
+  where
+    len = length (head ws)
+
+-- dropLine 10 ["Oi", "meu", "nome", "é", "Rodrigo"]
+
+splitLines :: [Word] -> [Line]
+splitLines [] = []
+splitLines ws = [getLinee 10 [head ws]] ++ splitLines (tail ws)
+
+-- splitLines ["rodrigo", "alves", "vieira"]
+
+fill :: String -> [Line]
+fill st = splitLines (splitWords st)
+
+-- fill "rodrigo alves vieira"
+
+joinLines :: [Line] -> String
+joinLines [] = ""
+joinLines lines
+  | (length lines) == 1 = head (head lines)
+  | otherwise =  head (head lines) ++ " " ++ joinLines(tail lines)
