@@ -250,3 +250,5 @@ joinLines [] = ""
 joinLines lines
   | (length lines) == 1 = head (head lines)
   | otherwise =  head (head lines) ++ " " ++ joinLines(tail lines)
+
+-- joinLines (fill "red hot chili peppers")
