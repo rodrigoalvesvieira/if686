@@ -22,7 +22,7 @@ The code in this repo is commented as much as possible (and reasonable) to facil
 
 
 | Lecture | Assigment file    | Release date    | Delivery date   | Final work     | Status       |
-| --------|:-----------------:|:---------------:|:---------------:|-------------- :|-------------:|
+| --------|:-----------------:|:---------------:|:---------------:|---------------:|-------------:|
 | 1       | assignment01.pdf  | March 17, 2015  | March 19, 2015  | 20150319.pdf   | _pending_    |
 | 2       | assignment02.pdf  | March 19, 2015  | March 24, 2015  | 20150324.hs    | **finished** |
 | 3       | assignment03.pdf  | March 24, 2015  | March 26, 2015  | 20150326.hs    | _pending_    |
