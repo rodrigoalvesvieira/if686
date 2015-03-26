@@ -84,3 +84,42 @@ dropWhilee pred (a:as)
 	| otherwise = a : as
 
 -- dropWhilee (>6) [7, 8, 9, 10, 1, 2, 3, 4, 5]
+
+{-
+
+Defina uma função polimórfica que ordena  uma lista de valores para os quais os
+operadores de comparação ((>), (>=), etc.) estão definidos.
+
+-}
+
+-- a dummy quicksort for comparable types
+psort :: Ord t => [t] -> [t]
+psort [] = []
+psort (x:xs) =
+    let smallerSorted = psort [a | a <- xs, a <= x]
+        biggerSorted = psort [a | a <- xs, a > x]
+    in  smallerSorted ++ [x] ++ biggerSorted
+
+-- psort "Only dimly aware of a certain unease in the air"
+
+-- counts how many times a value occurs in a list
+countOcurrences :: Ord t => [t] -> t -> Int
+countOcurrences [] _ = 0
+countOcurrences (x:xs) t
+	| x == t = 1 + countOcurrences xs t
+	| otherwise = countOcurrences xs t
+
+-- countOcurrences "rodrigo" 'r'
+-- countOcurrences [1, 2, 3, 4, 5, 5] 5
+
+-- agrupar ["Fernando", "Castor"]
+
+-- agrupar :: Ord t => [t] -> [(t, Int)]
+-- agrupar (a:as)
+-- 	| as == [] = []
+-- 	| otherwise = (ch, occ) : agrupar(as)
+-- 	where
+-- 		ch = (head a)
+-- 		occ = countOcurrences as ch
+
+-- agrupar [[4,2,4,3,4,4,4,5,4,6], [1,2,3,4,5],[2]]
