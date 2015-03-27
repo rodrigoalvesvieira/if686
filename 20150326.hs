@@ -115,8 +115,10 @@ countOcurrences (x:xs) t
 agrupar :: Ord t => [[t]] -> [(t, Int)]
 agrupar as
  	| as == [] = []
-	| otherwise = (ch, occ) : agrupar (tail as)
+	| empty == True = []
+	| otherwise = (ch, occ) : agrupar [(tail (head as))]
 	where
+		empty = length as == 0
 		ch = head (head as)
 		occ = countOcurrences (head as) ch
 
