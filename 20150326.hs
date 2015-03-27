@@ -112,14 +112,13 @@ countOcurrences (x:xs) t
 -- countOcurrences "rodrigo" 'r'
 -- countOcurrences [1, 2, 3, 4, 5, 5] 5
 
--- agrupar ["Fernando", "Castor"]
+agrupar :: Ord t => [[t]] -> [(t, Int)]
+agrupar as
+ 	| as == [] = []
+	| otherwise = (ch, occ) : agrupar (tail as)
+	where
+		ch = head (head as)
+		occ = countOcurrences (head as) ch
 
--- agrupar :: Ord t => [t] -> [(t, Int)]
--- agrupar (a:as)
--- 	| as == [] = []
--- 	| otherwise = (ch, occ) : agrupar(as)
--- 	where
--- 		ch = (head a)
--- 		occ = countOcurrences as ch
-
+-- agrupar ["Red", "Hot", "Chili", "Peppers"]
 -- agrupar [[4,2,4,3,4,4,4,5,4,6], [1,2,3,4,5],[2]]
