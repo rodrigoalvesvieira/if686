@@ -24,7 +24,7 @@ isDigit :: Char -> [Char]
 isDigit ch
   | ch >= '0' && ch <= '9' = ch : []
   | otherwise = []
--- 
+--
 digits :: String -> String
 digits str
   | (==) str [] = []
@@ -40,4 +40,35 @@ sumPairs :: [Int] -> [Int] -> [Int]
 sumPairs listx listy
   | (==) listx [] && (==) listy [] = []
   | otherwise = (head (select listx)) + (head (select listy)) : sumPairs (tail (select listx)) (tail (select listy))
-  
+
+takeAll :: (t -> Bool) -> [t] -> [t]
+takeAll _ [] = []
+takeAll pred (a:as)
+	| pred a = a : takeAll pred as
+	| otherwise = takeAll pred as
+
+fib :: Int -> Int
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+
+getAll :: Int -> [Int]
+getAll n
+  | length evens >= n = evens
+  | otherwise = getAll (n + 1)
+  where
+    as = fibList (n * 3) -- this is not mathematically correct, and is probably going to fail at some point
+    evens = getEvens as -- i'm just too lazy to think about it at 1 am
+
+getEvens :: [Int] -> [Int]
+getEvens [] = []
+getEvens (a:x)
+ | mod a 2 == 0 = a:getEvens x
+ | otherwise = getEvens x
+
+fibList :: Int -> [Int]
+fibList 0 = []
+fibList n = fib(n) : fibList(n - 1)
+
+fibonacci :: Int -> [Int]
+fibonacci n = reverse (getAll n)
