@@ -103,24 +103,54 @@ psort (x:xs) =
 -- psort "Only dimly aware of a certain unease in the air"
 
 -- counts how many times a value occurs in a list
-countOcurrences :: Ord t => [t] -> t -> Int
+_countOcurrences :: Ord t => [t] -> t -> Int
+_countOcurrences [] _ = 0
+_countOcurrences (x:xs) t
+	| x == t = 1 + _countOcurrences xs t
+	| otherwise = _countOcurrences xs t
+
+countOcurrences :: Ord t => [[t]] -> t -> Int
 countOcurrences [] _ = 0
-countOcurrences (x:xs) t
-	| x == t = 1 + countOcurrences xs t
-	| otherwise = countOcurrences xs t
+countOcurrences (x:xs) t = (_countOcurrences x t) + (countOcurrences xs t)
 
 -- countOcurrences "rodrigo" 'r'
 -- countOcurrences [1, 2, 3, 4, 5, 5] 5
 
-agrupar :: Ord t => [[t]] -> [(t, Int)]
-agrupar as
- 	| as == [] = []
-	| empty == True = []
-	| otherwise = (ch, occ) : agrupar [(tail (head as))]
+agrupar_seq :: Ord t => [t] -> [(t, Int)]
+agrupar_seq as
+	| as == [] = []
+	| otherwise = [(a, _countOcurrences as a)] ++ agrupar_seq (tail as)
 	where
-		empty = length as == 0
-		ch = head (head as)
-		occ = countOcurrences (head as) ch
+		a = head as
+
+joine :: Ord t => [[t]] -> [t]
+joine [] = []
+joine as = head as ++ joine (tail as)
+
+element :: Eq t => (t, Int) -> [(t, Int)] -> Bool
+element _ [] = False
+element e as = (fst (head as)) == (fst e)
+
+-- element ('a', 10) [('a', 11)]
+-- element ('a', 10) [('b', 11)]
+
+-- ('a', 10) `element` [('b', 11)]
+
+rmD :: Eq t => [(t, Int)] -> [(t, Int)] -> [(t, Int)]
+rmD as original
+	| as == [] = []
+	| uniq == True = (head as) : rmD (tail as) (original)
+ 	| otherwise = rmD (tail as) original
+	where
+		uniq = ((head as) `element` original)
+
+_agrupar :: Ord t => [[t]] -> [(t, Int)]
+_agrupar as
+ 	| as == [] = []
+	| otherwise = agrupar_seq (joine as) ++ _agrupar (tail as)
+
+agrupar :: Ord t => [[t]] -> [(t, Int)]
+agrupar as = (_agrupar as)
 
 -- agrupar ["Red", "Hot", "Chili", "Peppers"]
 -- agrupar [[4,2,4,3,4,4,4,5,4,6], [1,2,3,4,5],[2]]
