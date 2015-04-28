@@ -1,0 +1,133 @@
+{- TRABALHO 09 -}
+
+-- 1.
+
+=> AULA 01
+
+Todos exercícios já estavam feitos! :)
+
+=> AULA 02
+
+diff --git a/20150319.hs b/20150319.hs
+index 3a51629..7248c49 100644
+--- a/20150319.hs
++++ b/20150319.hs
+@@ -112,6 +112,28 @@ splitWords s
+ 	| (getSpace s == 0 && s!!0 /= ' ') = (getWord s):[]
+ 	| otherwise = (getWord s) : (splitWords $ dropSpace $ dropWord s)
+
++getLine :: Int -> [Word] -> Line
++getLine _ [] = []
++getLine x (h:t)
++    | (length h > x) = getLine x t
++    | otherwise = h : getLine (x - (length h) t)
++
++dropLine :: Int -> [Word] -> [Word]
++dropLine _ [] = []
++dropLine (h:t)
++    | (length t > x) = dropLine x (h)
++   	| otherwise = (dropLine (x - (length t) h) ++ [t]
++
++splitLines :: [Word] -> [Line]
++splitLines [] = []
++splitWords (h:t) = (getLine lineLength h) : (splitLines (drop 10 t))
++
++fill :: String -> [Line]
++fill s = splitLines (splitWords s)
++
++joinLines :: [Line] -> String
++joinLines s = reverse $ fill s
++
+ main :: IO()
+ main = do
+ 	putStrLn "Say my name!"
+
+
+=> AULA 03
+
+diff --git a/20150331.hs b/20150331.hs
+index b7b5e06..3ca434b 100644
+--- a/20150331.hs
++++ b/20150331.hs
+@@ -107,7 +107,31 @@ qsort :: (Ord t) => [t] -> [t]
+ qsort [] = []
+ qsort (h:t) = qsort ([x | x <- t, x < h]) ++ [h] ++ qsort ([x | x <- t, x >= h])
+
+-agrupar :: (Ord t) => [t] -> [(t, Int)]
++cou2 :: (Eq t) => [[t]] -> t -> Int
++cou2 [] _ = 0
++cou2 (h:t) e = (cou2 t e) + (cou1 h e)
++
++cou1 :: (Eq t) => [t] -> t -> Int
++cou1 [] e = 0
++cou1 (h:t) e
++	| (h == e) = 1 + (cou1 t e)
++	| otherwise = (cou1 t e)
++
++rem2 :: (Eq t) => [[t]] -> t -> [[t]]
++rem2 [] _ = []
++rem2 (h:t) e
++	| ((rem1 h e) == []) = (rem2 t e)
++	| otherwise = (rem1 h e):(rem2 t e)
++
++rem1 :: (Eq t) => [t] -> t -> [t]
++rem1 [] _ = []
++rem1 (h:t) e
++	| (h == e) = (rem1 t e)
++	| otherwise = h:(rem1 t e)
++
++agrupar :: (Eq t) => [[t]] -> [(t,Int)]
++agrupar [] = []
++agrupar ((h:t):l) = (h, (cou2 ((h:t):l)) h):(agrupar (rem2 ((h:t):l) h))
+
+ main :: IO()
+ main = do
+
+=> AULA 04
+
+diff --git a/20150407.hs b/20150407.hs
+index 2b70a6c..965adc0 100644
+--- a/20150407.hs
++++ b/20150407.hs
+@@ -34,12 +34,33 @@ hasPLC Domingo = False
+ data List t = Nil | Cons t (List t)
+ data Tree t = NilT | Node t (Tree t) (Tree t) deriving (Eq, Ord)
+
+---showExpr :: Expr -> String
+---fromList :: [t] -> List t
+---depth :: Tree t -> Int
+---collapse :: Tree t -> [t]
+---bfs :: Tree t -> t -> Bool
+---mapTree :: (t -> u) -> Tree t -> Tree u
++showExpr :: Expr -> String
++showExpr (Lit a) = show a
++showExpr (Add a b) = "(" ++ (showExpr a) ++ "+" ++ (showExpr b) ++ ")"
++showExpr (Sub a b) = "(" ++ (showExpr a) ++ "-" ++ (showExpr b) ++ ")"
++
++fromList :: [t] -> List t
++fromList [] = Nil
++fromList (h:t) = Cons h (fromList t)
++
++depth :: Tree t -> Int
++depth (NilT) = 0
++depth (Node a b c) = 1 + (max (depth b) (depth c))
++
++collapse :: Tree t -> [t]
++collapse NilT = []
++collapse (Node a b c) = [a] ++ collapse b ++ collapse c
++
++bfs :: Tree t -> t -> Bool
++bf (NilT) _ = False
++bfs (Node x a b) n
++	| x == n = True
++	| n < x = bfs a n
++	| otherwise = bfs b n
++
++mapTree :: (t -> u) -> Tree t -> Tree u
++mapTree f NilT = NilT
++mapTree f (Node a b c) = Node (f a) (mapTree f b) (mapTree f c)
+
+ main :: IO()
+ main = do
+
+=> AULA 05
